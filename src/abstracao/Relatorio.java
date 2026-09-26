@@ -1,49 +1,28 @@
 package abstracao;
 
 import implementacao.FormatoExportacao;
+import java.util.Objects;
 
-/**
- * Abstração Base do Padrão Bridge.
- * Mantém uma referência protegida (#exportador) para a interface FormatoExportacao.
- *
- * É terminantemente proibido instanciar exportadores concretos dentro desta classe
- * ou de suas subclasses, respeitando a Injeção de Dependência e o Princípio Aberto/Fechado (OCP).
- */
+// Classe base para os relatórios do sistema.
+// Recebe a implementação de exportação por injeção de dependência.
 public abstract class Relatorio {
 
-    // Ponte (Bridge) para o Implementor
+    // Referência para o exportador configurado (ponte do Bridge)
     protected FormatoExportacao exportador;
 
-    /**
-     * Injeção de Dependência obrigatória via construtor.
-     *
-     * @param exportador Implementação do formato de saída desejado.
-     */
     public Relatorio(FormatoExportacao exportador) {
-        if (exportador == null) {
-            throw new IllegalArgumentException("O exportador não pode ser nulo.");
-        }
-        this.exportador = exportador;
+        this.exportador = Objects.requireNonNull(exportador, "O exportador não pode ser nulo.");
     }
 
-    /**
-     * Método abstrato de negócio que coordena o fluxo de montagem do relatório.
-     */
+    // Cada tipo de relatório implementa sua lógica de montagem
     public abstract void gerarRelatorio();
 
-    /**
-     * Permite a alteração dinâmica da implementação da ponte em tempo de execução (Runtime).
-     *
-     * @param exportador Novo formato de exportação.
-     */
+    // Permite trocar o formato do relatório em tempo de execução
     public void setExportador(FormatoExportacao exportador) {
-        if (exportador == null) {
-            throw new IllegalArgumentException("O exportador não pode ser nulo.");
-        }
-        this.exportador = exportador;
+        this.exportador = Objects.requireNonNull(exportador, "O exportador não pode ser nulo.");
     }
 
     public FormatoExportacao getExportador() {
-        return this.exportador;
+        return exportador;
     }
 }
