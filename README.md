@@ -6,6 +6,16 @@
 > **Integrantes:**  
 > - Pablo de Sousa Santos  
 > - Pedro Fernandes Araújo  
+>
+> **Vídeo de Defesa Técnica (YouTube):** [https://youtu.be/PfrUgXdmmQ8](https://youtu.be/PfrUgXdmmQ8)
+
+---
+
+## Vídeo de Defesa Técnica Analítica e Demonstração Executiva
+
+- **Link direto (YouTube):** [https://youtu.be/PfrUgXdmmQ8](https://youtu.be/PfrUgXdmmQ8)
+
+[![Defesa Técnica — Padrão Bridge (TechFatec)](https://img.youtube.com/vi/PfrUgXdmmQ8/maxresdefault.jpg)](https://youtu.be/PfrUgXdmmQ8)
 
 ---
 
