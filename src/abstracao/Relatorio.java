@@ -1,28 +1,45 @@
 package abstracao;
 
 import implementacao.FormatoExportacao;
-import java.util.Objects;
 
-// Classe base para os relatórios do sistema.
-// Recebe a implementação de exportação por injeção de dependência.
+/**
+ * Abstração base do Padrão Bridge.
+ * Mantém uma referência de agregação para a interface FormatoExportacao,
+ * recebida exclusivamente via Injeção de Dependência.
+ */
 public abstract class Relatorio {
 
-    // Referência para o exportador configurado (ponte do Bridge)
     protected FormatoExportacao exportador;
 
+    /**
+     * Construtor com Injeção de Dependência do exportador concreto.
+     * É vedado o uso do operador 'new' dentro da hierarquia de relatórios.
+     *
+     * @param exportador implementação concreta de FormatoExportacao
+     */
     public Relatorio(FormatoExportacao exportador) {
-        this.exportador = Objects.requireNonNull(exportador, "O exportador não pode ser nulo.");
+        if (exportador == null) {
+            throw new IllegalArgumentException("O formato de exportação não pode ser nulo.");
+        }
+        this.exportador = exportador;
     }
 
-    // Cada tipo de relatório implementa sua lógica de montagem
-    public abstract void gerarRelatorio();
-
-    // Permite trocar o formato do relatório em tempo de execução
+    /**
+     * Permite alterar dinamicamente o formato de exportação em tempo de execução
+     * para a mesma instância de relatório.
+     *
+     * @param exportador novo formato de exportação
+     */
     public void setExportador(FormatoExportacao exportador) {
-        this.exportador = Objects.requireNonNull(exportador, "O exportador não pode ser nulo.");
+        if (exportador == null) {
+            throw new IllegalArgumentException("O formato de exportação não pode ser nulo.");
+        }
+        this.exportador = exportador;
     }
 
-    public FormatoExportacao getExportador() {
-        return exportador;
-    }
+    /**
+     * Operação abstrata que organiza os dados do relatório e delega a escrita
+     * para a ponte de implementação (exportador).
+     */
+    public abstract void gerarRelatorio();
 }

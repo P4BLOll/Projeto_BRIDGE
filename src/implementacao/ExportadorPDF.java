@@ -2,24 +2,26 @@ package implementacao;
 
 import java.util.List;
 
-// Exporta as informações simulando um documento PDF
+/**
+ * Implementador Concreto para exportação no formato PDF.
+ */
 public class ExportadorPDF implements FormatoExportacao {
 
     @Override
     public void desenharCabecalho(String titulo) {
-        System.out.println("[PDF] Cabeçalho: " + titulo);
+        System.out.println("[PDF] === CABEÇALHO DO DOCUMENTO: " + titulo + " (TechFatec) ===");
     }
 
     @Override
     public void desenharCorpo(List<String> dados) {
-        System.out.println("[PDF] Conteúdo:");
-        for (String item : dados) {
-            System.out.println("  - " + item);
+        System.out.println("[PDF] Renderizando páginas do relatório:");
+        for (String linha : dados) {
+            System.out.println("  - " + linha);
         }
     }
 
     @Override
     public void finalizarArquivo() {
-        System.out.println("[PDF] Arquivo gerado com sucesso.\n");
+        System.out.println("[PDF] Documento PDF finalizado e assinado com sucesso.\n");
     }
 }
